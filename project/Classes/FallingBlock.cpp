@@ -44,7 +44,7 @@ bool FallingBlock::init(BlockColor color)
         Color4F(getDisplayColor(_color))
     );
 
-    addChild(_drawNode);
+    addChild(_drawNode, kChildTagDrawNode);
 
     setContentSize(
         Size(

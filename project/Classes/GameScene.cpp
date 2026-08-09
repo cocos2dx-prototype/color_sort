@@ -45,7 +45,7 @@ void GameScene::setupBackground()
 
     background->setPosition(Vec2::ZERO);
 
-    addChild(background, -100);
+    addChild(background, kChildTagBackground);
 }
 
 void GameScene::setupBins()
@@ -89,7 +89,7 @@ void GameScene::createBin(
         )
     );
 
-    addChild(bin, 0);
+    addChild(bin, kChildTagBin);
 }
 
 void GameScene::setupHUD()
@@ -109,7 +109,7 @@ void GameScene::setupHUD()
         )
     );
 
-    addChild(_scoreLabel, 100);
+    addChild(_scoreLabel, kChildTagHUD);
 
     _gameMessageLabel = Label::createWithTTF(
         "",
@@ -128,7 +128,7 @@ void GameScene::setupHUD()
 
     _gameMessageLabel->setVisible(false);
 
-    addChild(_gameMessageLabel, 100);
+    addChild(_gameMessageLabel, kChildTagHUD);
 }
 
 void GameScene::setupInput()
@@ -229,7 +229,7 @@ void GameScene::spawnBlock()
         )
     );
 
-    addChild(block, 10);
+    addChild(block, kChildTagBlock);
 
     _blocks.pushBack(block);
 }

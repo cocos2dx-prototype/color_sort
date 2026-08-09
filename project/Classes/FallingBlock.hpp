@@ -20,6 +20,12 @@ enum class BlockColor
 class FallingBlock : public cocos2d::Node {
     
 public:
+    enum ChildTag {
+        None = 0,
+        kChildTagDrawNode,
+    };
+    
+public:
     static FallingBlock* create(BlockColor color);
 
     bool init(BlockColor color);

@@ -11,22 +11,52 @@
 #include "cocos2d.h"
 #include "FallingBlock.hpp"
 
+enum class GameState
+{
+    Playing,
+    GameOver,
+    Won
+};
+
 class GameScene : public cocos2d::Scene
 {
 public:
+    enum ChildTag {
+        None = 0,
+        kChildTagBackground,
+        kChildTagBlock,
+        kChildTagBin,
+        kChildTagHUD,
+    };
+    
+public:
     static cocos2d::Scene* createScene();
 
-    virtual bool init() override;
-
-    CREATE_FUNC(GameScene);
-
 private:
-    enum class GameState
-    {
-        Playing,
-        GameOver,
-        Won
-    };
+    CREATE_FUNC(GameScene);
+    virtual bool init() override;
+    virtual void update(float delta) override;
+    virtual void onEnter() override;
+    virtual void onExit() override;
+    
+private:
+    GameState _gameState = GameState::Playing;
+
+    int _score = 0;
+
+    float _spawnTimer = 0.0f;
+
+    cocos2d::Vector<FallingBlock*> _blocks;
+
+    FallingBlock* _grabbedBlock = nullptr;
+
+    cocos2d::Label* _scoreLabel = nullptr;
+    cocos2d::Label* _gameMessageLabel = nullptr;
+
+    cocos2d::EventListenerMouse* _mouseListener = nullptr;
+    cocos2d::EventListenerKeyboard* _keyboardListener = nullptr;
+    
+private:
 
     void setupBackground();
     void setupBins();
@@ -39,8 +69,6 @@ private:
     );
 
     void spawnBlock();
-
-    void update(float delta) override;
 
     void updateBlocks(float delta);
     void checkBlockCollisions();
@@ -76,23 +104,6 @@ private:
     cocos2d::Rect getRedBinRect() const;
     cocos2d::Rect getGreenBinRect() const;
     cocos2d::Rect getBlueBinRect() const;
-
-private:
-    GameState _gameState = GameState::Playing;
-
-    int _score = 0;
-
-    float _spawnTimer = 0.0f;
-
-    cocos2d::Vector<FallingBlock*> _blocks;
-
-    FallingBlock* _grabbedBlock = nullptr;
-
-    cocos2d::Label* _scoreLabel = nullptr;
-    cocos2d::Label* _gameMessageLabel = nullptr;
-
-    cocos2d::EventListenerMouse* _mouseListener = nullptr;
-    cocos2d::EventListenerKeyboard* _keyboardListener = nullptr;
 };
 
 #endif /* GameScene_hpp */

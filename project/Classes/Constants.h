@@ -27,7 +27,7 @@ namespace ColorSort
 
     constexpr float SPAWN_INTERVAL = 2.0f;
     constexpr float SPAWN_Y = DESIGN_HEIGHT;
-    constexpr float SPAWN_MIN_X = BLOCK_HALF_SIZE;
+    constexpr float SPAWN_MIN_X = BLOCK_HALF_SIZE ;
     constexpr float SPAWN_MAX_X = DESIGN_WIDTH - BLOCK_HALF_SIZE;
 
     constexpr int WIN_SCORE = 15;
